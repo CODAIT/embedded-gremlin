@@ -1,0 +1,29 @@
+language: python
+python:
+- "3.7"
+-
+install:
+#install conda
+ - sudo apt-get update
+ - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+ - bash miniconda.sh -b -p $HOME/miniconda
+ - source "$HOME/miniconda/etc/profile.d/conda.sh"
+ - hash -r
+ - conda config --set always_yes yes --set changeps1 no
+ - conda update -q conda
+
+ - conda info -a
+
+#install text-extenstions-for-pandas and setup env
+ - wget https://github.com/CODAIT/text-extensions-for-pandas/archive/master.zip -O txp.zip
+ - unzip txp.zip
+ - pushd text-extensions-for-pandas-master
+ - CONDA_HOME="${HOME}/miniconda" ./env.sh
+ - popd
+
+script:
+
+ #activate python virtual enviornment
+ - conda activate pd
+ #run unit tests 
+ - PYTHONPATH="${HOME}/text-extensions-for-pandas-master" python -m unittest discover
