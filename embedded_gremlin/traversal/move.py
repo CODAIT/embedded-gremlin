@@ -60,6 +60,11 @@ class InTraversal(UnaryTraversal):
     """Result of calling GraphTraversal.in_()"""
 
     def __init__(self, parent: GraphTraversal, edge_types: Tuple[str]):
+        """
+        :param parent: Previous element of the traversal
+        :param edge_types: 0 or more names of types of edges.
+         Zero types means "all edge types".
+        """
         UnaryTraversal.__init__(self, parent)
         self._edge_types = edge_types
 

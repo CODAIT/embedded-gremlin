@@ -71,6 +71,9 @@ def token_features_to_gremlin(token_features: pd.DataFrame,
                               drop_self_links=True,
                               include_begin_and_end=False):
     """
+    Turn a DataFrame of token features in the form returned by
+    `make_tokens_and_features` into a string of Gremlin commands.
+
     :param token_features: A subset of a token features DataFrame in the format
     returned by `make_tokens_and_features()`.
 
